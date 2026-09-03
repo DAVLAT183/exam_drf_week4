@@ -1,0 +1,185 @@
+Что такое JWT, из каких частей он состоит и зачем его используют в Django REST Framework?
+Jwt-eto javaScriptWebToken-ego ispolzuyut v kachestve otveta login or register
+
+Что такое переменная в Python, как она хранит значение и почему в Python не нужно заранее указывать тип переменной?
+vereible-eto mesto gde infa hranitsa infa a type nuzno ukazivat dla togo chto bi i tak ponatno chto etot vereible prenimaet 
+
+Что такое Gunicorn, какую роль он выполняет между Django-приложением и Nginx?
+Gunicorn - eto kakbi server kotory zapuskaet tvoy Django ili Drf a takze pochemu immeno Gunicorn mi ne mozem zapuskat cherez py manage.py runserver potomusto tak server ot use 10-20 users umret vas server a tak on nagruzky razpredelaet
+Nginx - eto kakbi chast kotoraya prinemayet zaprosi v ansychronom vide toest on rabotaet bistreye
+
+
+Чем отличается get() от filter() в Django ORM? Что вернёт каждый из них, если объект найден или не найден?
+get - prosto beret vse a v sluchae esli nechego netu to 404-NOTFOUND,filter - sortiruet po parametram kotorie dast user a v sluchae esli nechego nety to - None
+
+Что такое Docker container, зачем он нужен и чем он похож на отдельную маленькую систему для запуска приложения?
+Docker container - eto mesto gde server zapuskaetsa proect i hronatsa vse potrebnosti i uyazvimosti vashego proecta
+a mini prilozeniem ego nazivayut potomusto v nem svoy proect i modeli i biblioteki poetomu i schitayut mini prilozeniem
+
+
+Что такое serializer в DRF, зачем он нужен при отправке и получении данных через API?
+serializer - eto kakbi perevodchik dla servera i dla sayta on beret zapros i iz json perevodit ego na yazik kotory ponaten payton takze i naoborot iz yazika ponatnomu tolko dla paython v json
+
+Чем отличается list от tuple в Python? В каких ситуациях лучше использовать список, а в каких кортеж?
+list - kakbi nelza izmenit a, tuple - mozno izmenit 
+i vivod 
+list - ispolzuyut dla mest gde infy mozno i nuzno izmenat
+tuple - ispolzuyut dla mest gde infy nelza izmenat 
+
+Что такое Nginx, зачем он нужен на production-сервере и какую роль он играет перед Django?
+Nginx - eto kakbi chast kotoraya prinemayet zaprosi v ansychronom vide toest on rabotaet bistreye
+
+
+Что такое migration в Django? Зачем нужны миграции после изменения моделей?
+eto nuzno potomusto Django hranit strukturu db v tablice django_migrations vot dla etogo kazdy raz posle obnovleniya db eto nuzno
+
+
+Что такое Celery, для каких задач его используют в Django-проектах?
+Celery - eto asunchronniy reshala zadach dla Python kotory vipolnayet zadachi v fonowom rezime
+
+Что такое ForeignKey в Django models? Как он связывает одну таблицу с другой?
+ForeignKey - eto chtuka kotoraya svazivaet dve i bolee tablici vo edino cherez id
+
+Чем отличается is от == в Python? Когда проверяется значение, а когда проверяется один и тот же объект в памяти?
+is ot == otlichaetsa tem chto is proverayet po adresu a == po znacheniyu
+
+
+Что такое self в Python-классах? Почему он нужен внутри методов объекта?
+self - eto kak silka na tekusiy ekzemplar klassa nuzen dla dostupa k atributam
+
+Что такое cache, зачем кэшировать данные и в каких случаях это ускоряет backend?
+cache - eto sposob hraneniya vremenoy informasii v operativke eto rabotaet bistreye potomusto ono hranitsa v RAM
+
+Что такое Django REST Framework, зачем его используют поверх обычного Django?
+eto kak nastroyka chtoli dla sozdaniya rest api tochno ne pomnu vozmozno oshibsa
+
+Чем отличается authentication от authorization? Как объяснить разницу на примере пользователя и его прав?
+authentication - eto prosto proverka kotoraya govorit kto ti voin toest ispolzuyut dla login i on iset teba v db
+authorization - a eto proverka tvoih permisions tipo razreseniya tebe eto delat mozno ili net
+
+Что такое ORM в Django? Как ORM позволяет работать с базой данных без написания чистого SQL?
+ORM - eto Vrode kak object-reletil-Mapping, kak sloy mezdu paython kodom i sql-zaprosom
+
+Что такое exception в Python? Почему ошибки нужно правильно обрабатывать?
+eto chtuka kotoraya govorit kakaya u teba osibka oshibku vo vrema chiteniya koda pomogaet, kodu pokazat oshibku i ne ostanavlivatsa
+
+Что такое Redis, почему он быстрый и где он хранит данные?
+eto hranilise danix po tipy key-value rabotaet kak kesh broker dla Celery ya na verxu chototo takoe upominal
+
+Что такое ModelViewSet в DRF? Какие стандартные действия он уже умеет выполнять?
+ModelViewSet - eto gotovaya funcsiya kotoraya mozet vipolnat polniy crud dla vibranogo model
+
+Чем отличается dict от set в Python? Для чего используется словарь, а для чего множество?
+dict - hranit kak key value a dostup po key
+set - hranit tolko unikalnie elementi bez key
+
+Что такое related_name в Django models? Как он помогает обращаться к связанным объектам в обратную сторону?
+eto kakbi chtuka dla aaa vspomnil obratnoy svazi vo vrema vizova ee gde libo vi mne eto govorili akai yusuf
+
+Почему нельзя использовать Django runserver в production? Какие у него ограничения по безопасности и производительности?
+potomusto tak server umret uze ot 10-20 userov ot ogromnoy na gruzki i vot dla etogo i ispolzuyut Gunicorn i Nginx
+
+Что такое класс в Python? Как он помогает создавать свои типы объектов?
+class eto kak shablon dla sozdaniya object opredelaet atribut i method
+
+Для чего нужен файл settings.py в Django? Какие важные настройки обычно находятся в этом файле?
+dla nastroyek nashego proecta tam nahodatsa nastroyki jwt ili swagger i takze podklucheniya papki naprimer s imenem myapp kak u mena
+
+
+Что такое TTL в Redis? Что произойдёт с ключом после истечения времени жизни?
+eto TimeToLeave v Redis nuzno dla svoevremennoy ochstki pamati obicho stavat 15-20 minut
+
+Чем отличается Serializer от ModelSerializer в DRF? Почему ModelSerializer часто удобнее?
+serializer - prosto kogda ti sam ego pises pola i modeli
+ModelSerializer - avtomati generiruet pola i modeli
+
+Для чего используется try / except в Python? Как с его помощью можно обработать ошибку, чтобы программа не упала?
+prosto obrabotka oshibk bez ostanovleniya koda
+try - kod c vozmoznoy oshibkoy
+except eye obrabotka
+
+Как Django, Redis и Celery работают вместе? Объясни цепочку: Django создаёт задачу, Redis хранит её, Celery выполняет.
+TAK TUT PO PORADKU
+Django - poluchaet HTTP zapros i sozdaet oshibku
+Redis - broker mesto dla vremennoy hraneniya informasii kak ochered zadach
+Celery - worker prosto postoyano beret zadachi iz etoy ocheredi
+
+Что такое view в Django? За что отвечает view при обработке HTTP-запроса?
+eto funcsiya kotory obrabativaet http-zapros i takze otvechaet http zaprosom
+
+Что такое ManyToManyField в Django? Приведи пример связи “многие ко многим”.
+eto kogda tablisi podklucheni ManyToMany toest mnogie k mnogim 
+primer
+User - mozet imet podpisikov i mozet bit na kogoto podpisan
+
+Что такое функция в Python? Зачем выносить повторяющийся код в функцию?
+eto gotoviy blok koda kotoriy ne pishetsa raz za razom a 1 raz pishetsa i dalshe prosto vizevaetsa
+
+Что будет, если Celery worker не запущен, но Django отправляет задачи в Celery?
+koroche esli Celery ne zapusen zaprosi v RAM toest te kotorie v ocheredi ne budut obrabativatsa i ram budet polnostyu zabit etimi zaprosami u otchsistets ot TTL
+
+Что такое REST API? Какие принципы REST должен понимать backend-разработчик?
+eto arhitekturniy style dla setevix api klient obshaetsa cherez http-zaprosi,a javob kak url
+
+Что такое объект в ООП? Чем объект отличается от класса?
+klass - eto cherctez ili shablon a 
+object - eto ekzemplar klassa, nu ili konkretnaya realizasiya 
+
+Для чего нужен файл requirements.txt в Python-проекте? Как он помогает установить зависимости?
+prosto mesto so vsemi Framework etogo proecta tam ima paketa i ego versiya vot moya
+
+Django>=4.2,<5.0
+djangorestframework>=3.14
+django-filter>=23.0
+Pillow>=10.0
+drf-yasg>=1.21
+djangorestframework-simplejwt>=5.3
+django-cors-headers>=4.0
+openai>=1.0
+google-generativeai>=0.3.0
+channels>=4.0
+daphne>=4.0
+requests>=2.31
+beautifulsoup4>=4.12
+
+
+Что такое select_related() в Django ORM? Для каких связей его используют и как он уменьшает количество SQL-запросов?
+otprovlaet vse odnim sql-zaprosom kak optimizasiya django orm
+
+Что такое Docker, зачем backend-разработчику уметь запускать проект через Docker?
+eto platforma dla hraneniya,beret proect so vsemi ego zavisemestami i biblioteki nastroyki i vse ostalnoe
+
+Что такое model в Django? Как модель связана с таблицей в базе данных?
+eto Python klass kotoriy opisivaet strukturu tablici
+
+Чем отличается *args от **kwargs в Python? Когда функция принимает обычные аргументы, а когда именованные?
+*args - kak kortez iz neimenovonix argumentov
+**kwargs - toze samoe tolko s imenovanimi argumentami toest key-value
+
+Что такое authentication? Как Django или DRF понимает, какой пользователь отправил запрос?
+eto uze kogda proveraet kto otprovlaet zapros 
+
+Что такое наследование в ООП? Как дочерний класс может использовать свойства и методы родительского класса?
+mehanizm pri kotorom docherniy klass poluchaet atributi i methodi roditelskogo klassa mozet svoi ili izmenat susestvuyusie
+
+Чем отличается PUT от PATCH в REST API? Когда нужно полностью обновлять объект, а когда частично?
+put - kogda on menayet object polnostyu
+patch - kogda on menayet tolko odno pole
+
+Для чего Redis используют в Django/backend-разработке? Объясни Redis как cache, broker для Celery и временное хранилище.
+Что такое проблема N+1 queries в Django ORM? Почему она может сильно замедлить API?
+Что такое app в Django? Почему большой проект делят на несколько приложений?
+Чем отличается container от image в Docker? Что является шаблоном, а что запущенным экземпляром?
+Что такое APIView и ViewSet в DRF? Чем ручное описание методов отличается от готовой структуры ViewSet?
+Что такое __init__ в Python-классе? Когда он вызывается и для чего обычно используется?
+Что такое prefetch_related() в Django ORM? Для каких связей его используют и чем он отличается от select_related()?
+Для чего нужен файл urls.py в Django? Как Django понимает, какой view вызвать по конкретному URL?
+Что такое полиморфизм в ООП? Как разные классы могут иметь одинаковый метод, но разное поведение?
+Чем отличается CASCADE от SET_NULL в Django models? Что произойдёт со связанными объектами при удалении главного объекта?
+Как смотреть логи Gunicorn на сервере? Какие команды можно использовать через systemctl или journalctl?
+Что такое mutable и immutable типы в Python? Какие типы можно изменять, а какие создают новый объект?
+Зачем нужен Gunicorn, если есть Django? Почему Django сам не должен напрямую обслуживать production-трафик?
+Что такое Django? Какие задачи он решает при создании web-приложений?
+Что такое object/экземпляр класса на практике? Как из одного класса можно создать много разных объектов с разными данными?
+Что такое инкапсуляция в ООП? Как она помогает скрывать внутреннюю логику объекта?
+Что такое docker-compose.yml, зачем он нужен и как он помогает запускать несколько сервисов проекта? X

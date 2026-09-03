@@ -1,0 +1,264 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import { Send, User, Building2, ArrowLeft, MessageSquare } from 'lucide-react';
+import api from '@/lib/api';
+import Button from '@/components/ui/Button';
+import { showToast, getErrorMessage } from '@/lib/utils';
+import { useAuth } from '@/hooks/useAuth';
+
+interface User {
+  id: number;
+  username: string;
+  email: string;
+  avatar: string | null;
+  role: string;
+}
+
+interface DirectMessage {
+  id: number;
+  sender: number;
+  sender_name: string;
+  recipient: number;
+  recipient_name: string;
+  content: string;
+  created_at: string;
+  is_read: boolean;
+}
+
+interface Conversation {
+  user: User;
+  last_message: DirectMessage;
+  unread_count: number;
+}
+
+interface EmployerChatProps {
+  initialUserId?: number;
+}
+
+export default function EmployerChat({ initialUserId }: EmployerChatProps) {
+  const { user } = useAuth();
+  const [conversations, setConversations] = useState<Conversation[]>([]);
+  const [activeUser, setActiveUser] = useState<User | null>(null);
+  const [messages, setMessages] = useState<DirectMessage[]>([]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [sending, setSending] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const isStudent = user?.role === 'student';
+  const otherRoleLabel = isStudent ? 'Работодатель' : 'Студент';
+  const headerLabel = isStudent ? 'Чат с работодателями' : 'Чат со студентами';
+
+  useEffect(() => {
+    loadConversations();
+  }, []);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  const loadConversations = async () => {
+    setLoading(true);
+    try {
+      const res = await api.get('/messages/conversations/');
+      setConversations(res.data);
+
+      if (initialUserId) {
+        const conv = res.data.find((c: Conversation) => c.user.id === initialUserId);
+        if (conv) {
+          openChat(conv.user);
+        } else {
+          try {
+            const userRes = await api.get(`/users/${initialUserId}/`);
+            const userData = userRes.data;
+            openChat(userData);
+          } catch {
+            setActiveUser({ id: initialUserId, username: otherRoleLabel, email: '', avatar: null, role: isStudent ? 'employer' : 'student' });
+          }
+        }
+      }
+    } catch (err) {
+      showToast(getErrorMessage(err), 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const openChat = async (user: User) => {
+    setActiveUser(user);
+    try {
+      const res = await api.get(`/messages/${user.id}/`);
+      setMessages(res.data);
+    } catch (err) {
+      showToast(getErrorMessage(err), 'error');
+    }
+  };
+
+  const sendMessage = async () => {
+    const text = input.trim();
+    if (!text || !activeUser || sending) return;
+
+    setSending(true);
+    setInput('');
+
+    try {
+      const res = await api.post(`/messages/${activeUser.id}/`, { content: text });
+      setMessages((prev) => [...prev, res.data]);
+      loadConversations();
+    } catch (err) {
+      showToast(getErrorMessage(err), 'error');
+      setInput(text);
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
+  const formatTime = (dateStr: string) => {
+    const d = new Date(dateStr);
+    return d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+  };
+
+  if (activeUser) {
+    return (
+      <div className="flex flex-col h-full">
+        <div className="p-4 border-b border-[var(--color-border-default)] bg-[var(--color-bg-secondary)]">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => { setActiveUser(null); setMessages([]); }}
+              className="p-2 rounded-full hover:bg-[var(--color-surface-hover)] transition-colors"
+            >
+              <ArrowLeft size={18} className="text-[var(--color-text-muted)]" />
+            </button>
+            <div className="w-9 h-9 rounded-full bg-[var(--color-surface-hover)] flex items-center justify-center">
+              {activeUser.avatar ? (
+                <img src={activeUser.avatar} alt="" className="w-full h-full rounded-full object-cover" />
+              ) : isStudent ? (
+                <Building2 size={16} className="text-[var(--color-text-muted)]" />
+              ) : (
+                <User size={16} className="text-[var(--color-text-muted)]" />
+              )}
+            </div>
+            <div>
+              <h3 className="font-heading font-semibold text-sm">{activeUser.username}</h3>
+              <p className="text-xs text-[var(--color-text-muted)]">{otherRoleLabel}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          {messages.length === 0 ? (
+            <div className="flex flex-col items-center justify-center h-full text-center">
+              <div className="w-14 h-14 rounded-full bg-[var(--color-surface-hover)] flex items-center justify-center mb-3">
+                <MessageSquare size={22} className="text-[var(--color-text-muted)]" />
+              </div>
+              <p className="text-sm text-[var(--color-text-muted)]">Начните разговор</p>
+            </div>
+          ) : (
+            messages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`flex ${msg.sender === activeUser.id ? 'justify-start' : 'justify-end'}`}
+              >
+                <div
+                  className={`max-w-[70%] px-4 py-3 rounded-[16px] text-sm leading-relaxed ${
+                    msg.sender === activeUser.id
+                      ? 'bg-[var(--color-surface-card)] text-[var(--color-text-primary)] border border-[var(--color-border-default)] rounded-bl-[4px]'
+                      : 'bg-[var(--color-accent-primary)] text-white rounded-br-[4px]'
+                  }`}
+                >
+                  <p>{msg.content}</p>
+                  <p className={`text-[10px] mt-1 ${msg.sender === activeUser.id ? 'text-[var(--color-text-muted)]' : 'text-white/70'}`}>
+                    {formatTime(msg.created_at)}
+                  </p>
+                </div>
+              </div>
+            ))
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+
+        <div className="p-4 border-t border-[var(--color-border-default)] bg-[var(--color-bg-secondary)]">
+          <div className="flex gap-3">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Напишите сообщение..."
+              className="flex-1 px-4 py-3 rounded-[12px] bg-[var(--color-surface-card)] border border-[var(--color-border-default)] text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-subtle)] focus:outline-none focus:border-[var(--color-accent-primary)] focus:ring-2 focus:ring-[var(--color-accent-primary-muted)] transition-all"
+              disabled={sending}
+            />
+            <Button onClick={sendMessage} disabled={!input.trim() || sending}>
+              <Send size={16} />
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="h-full flex flex-col">
+      <div className="p-4 border-b border-[var(--color-border-default)] bg-[var(--color-bg-secondary)]">
+        <h3 className="font-heading font-semibold">{headerLabel}</h3>
+        <p className="text-xs text-[var(--color-text-muted)] mt-0.5">{isStudent ? 'Откликнитесь на вакансию, чтобы начать чат' : 'Студенты напишут вам после отклика'}</p>
+      </div>
+      <div className="flex-1 overflow-y-auto">
+        {loading ? (
+          <div className="p-4 text-center text-[var(--color-text-muted)] text-sm">Загрузка...</div>
+        ) : conversations.length === 0 ? (
+          <div className="flex flex-col items-center justify-center h-full text-center">
+            <Building2 size={36} className="text-[var(--color-text-muted)] mb-3" />
+            <p className="text-sm text-[var(--color-text-muted)]">Нет диалогов</p>
+            <p className="text-xs text-[var(--color-text-subtle)] mt-1">{isStudent ? 'Откликнитесь на вакансию, чтобы начать чат' : 'Студенты напишут вам после отклика'}</p>
+          </div>
+        ) : (
+          conversations.map((conv) => (
+            <button
+              key={conv.user.id}
+              onClick={() => openChat(conv.user)}
+              className="w-full text-left px-4 py-4 border-b border-[var(--color-border-default)] hover:bg-[var(--color-surface-hover)] transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[var(--color-surface-hover)] flex items-center justify-center flex-shrink-0">
+                  {conv.user.avatar ? (
+                    <img src={conv.user.avatar} alt="" className="w-full h-full rounded-full object-cover" />
+                  ) : isStudent ? (
+                    <Building2 size={16} className="text-[var(--color-text-muted)]" />
+                  ) : (
+                    <User size={16} className="text-[var(--color-text-muted)]" />
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-sm text-[var(--color-text-primary)]">
+                      {conv.user.username}
+                    </span>
+                    {conv.unread_count > 0 && (
+                      <span className="w-5 h-5 rounded-full bg-[var(--color-accent-primary)] text-white text-[10px] font-bold flex items-center justify-center">
+                        {conv.unread_count}
+                      </span>
+                    )}
+                  </div>
+                  {conv.last_message && (
+                    <p className="text-xs text-[var(--color-text-muted)] truncate mt-0.5">
+                      {conv.last_message.content}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </button>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
