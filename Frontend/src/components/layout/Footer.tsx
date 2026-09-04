@@ -1,12 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Briefcase, Building2, Twitter, Linkedin, Github, Mail } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 
 export default function Footer() {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
   const { user } = useAuth();
+
+  if (pathname === '/chat') return null;
 
   const footerLinks = {
     product: [

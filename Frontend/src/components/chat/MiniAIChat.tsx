@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Bot, X, Send, Loader2, Sparkles, MessageSquare, Minimize2, Maximize2 } from 'lucide-react';
 import api from '@/lib/api';
 import { showToast, getErrorMessage } from '@/lib/utils';
@@ -13,6 +14,7 @@ interface Message {
 }
 
 export default function MiniAIChat() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -76,6 +78,8 @@ export default function MiniAIChat() {
     setSessionId(null);
     setInput('');
   };
+
+  if (pathname === '/chat') return null;
 
   return (
     <div className="fixed bottom-6 right-6 z-[500]">
