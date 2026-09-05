@@ -159,18 +159,8 @@ export default function StudentProfilePage() {
     }
   };
 
-  const saveAIResume = async () => {
-    if (!aiResume) return;
-    try {
-      const res = await api.post('/ai/create-resume/');
-      const newResume = res.data;
-      setResumes((prev) => [newResume, ...prev]);
-      setAiPreviewOpen(false);
-      setAiResume(null);
-      showToast('ИИ-резюме сохранено!', 'success');
-    } catch (err) {
-      showToast(getErrorMessage(err), 'error');
-    }
+  const saveAIResume = () => {
+    useAIResume();
   };
 
   const useAIResume = () => {
@@ -511,11 +501,7 @@ export default function StudentProfilePage() {
             <div className="flex gap-3">
               <Button onClick={saveAIResume} className="flex-1">
                 <Sparkles size={14} className="mr-1" />
-                Сохранить как резюме
-              </Button>
-              <Button onClick={useAIResume} variant="secondary" className="flex-1">
-                <Pencil size={14} className="mr-1" />
-                Редактировать
+                Отредактировать и сохранить
               </Button>
             </div>
           </div>
