@@ -48,8 +48,8 @@ export default function HomePage() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-accent-primary/3 via-transparent to-accent-cyan/3 rounded-full blur-3xl" />
 
       {/* HERO SECTION */}
-      <section className="relative py-24 lg:py-32 border-b border-border-default/50">
-        <div className="max-w-[1280px] mx-auto px-6">
+      <section className="relative py-16 sm:py-24 lg:py-32 border-b border-border-default/50">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
           <div className="max-w-3xl relative z-10">
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-accent-primary/10 to-accent-cyan/10 border border-accent-primary/20 px-4 py-2 mb-8 rounded-lg">
               <Terminal size={14} className="text-accent-primary" />
@@ -118,8 +118,8 @@ export default function HomePage() {
       </section>
 
       {/* FEATURES SECTION */}
-      <section className="py-20 border-b border-border-default">
-        <div className="max-w-[1280px] mx-auto px-6">
+      <section className="py-12 sm:py-20 border-b border-border-default">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-accent-primary/10 border border-accent-primary/20 px-4 py-2 mb-6 rounded-lg">
               <Sparkles size={14} className="text-accent-primary" />
@@ -163,8 +163,8 @@ export default function HomePage() {
       </section>
 
       {/* CATEGORIES */}
-      <section className="py-20 border-b border-border-default">
-        <div className="max-w-[1280px] mx-auto px-6">
+      <section className="py-12 sm:py-20 border-b border-border-default">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-2 h-2 bg-accent-primary rounded-full" />
@@ -200,8 +200,8 @@ export default function HomePage() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-24 relative">
-        <div className="max-w-[1280px] mx-auto px-6 text-center relative z-10">
+      <section className="py-16 sm:py-24 relative">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 text-center relative z-10">
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-accent-primary/10 via-transparent to-accent-cyan/10 rounded-3xl blur-3xl mx-4" />
           
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500/10 to-accent-primary/10 border border-red-500/20 px-4 py-2 mb-6 rounded-lg">
@@ -228,7 +228,7 @@ export default function HomePage() {
       </section>
 
       {/* SYSTEM BAR */}
-      <div className="border-t border-border-default bg-bg-secondary py-4 px-6">
+      <div className="border-t border-border-default bg-bg-secondary py-3 sm:py-4 px-4 sm:px-6">
         <div className="max-w-[1280px] mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 bg-accent-primary rounded-full animate-pulse" />

@@ -41,7 +41,7 @@ export default function ApplicationsPage() {
 
   if (loading) {
     return (
-      <div className="max-w-[1280px] mx-auto px-6 py-8">
+    <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <Skeleton className="h-8 w-48 mb-6" />
         {Array.from({ length: 4 }).map((_, i) => (
           <Skeleton key={i} className="h-20 rounded-card mb-3" />
@@ -71,7 +71,7 @@ export default function ApplicationsPage() {
         <div className="space-y-3">
           {applications.map((app) => (
             <Card key={app.id}>
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex-1 min-w-0">
                   <h3 className="text-sm font-semibold text-soft truncate">{app.job_title}</h3>
                   <p className="text-xs text-muted mt-0.5">
@@ -95,7 +95,7 @@ export default function ApplicationsPage() {
                 </div>
 
                 {user?.role === 'employer' && (
-                  <div className="ml-4 flex-shrink-0 w-44">
+                  <div className="sm:ml-4 flex-shrink-0 w-full sm:w-44">
                     <Select
                       value={app.status}
                       onChange={(value) => updateStatus(app.id, value)}

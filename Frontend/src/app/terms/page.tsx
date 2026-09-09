@@ -4,7 +4,7 @@ import { FileText } from 'lucide-react';
 
 export default function TermsPage() {
   return (
-    <div className="max-w-[800px] mx-auto px-6 py-12">
+    <div className="max-w-[800px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <div className="flex items-center gap-3 mb-8">
         <div className="w-12 h-12 rounded-xl bg-accent-primary/10 flex items-center justify-center">
           <FileText size={22} className="text-accent-primary" />

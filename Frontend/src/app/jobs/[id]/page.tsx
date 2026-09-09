@@ -295,9 +295,9 @@ export default function JobDetailPage() {
 
   if (loading) {
     return (
-      <div className="max-w-[1280px] mx-auto px-6 py-8">
+    <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <Skeleton className="h-6 w-40 mb-6" />
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           <div className="lg:col-span-2">
             <Skeleton className="h-8 w-3/4 mb-4" />
             <Skeleton className="h-4 w-1/2 mb-6" />
@@ -313,7 +313,7 @@ export default function JobDetailPage() {
 
   if (!job) {
     return (
-      <div className="max-w-[1280px] mx-auto px-6 py-16 text-center">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
         <div className="text-5xl mb-4">😕</div>
         <h2 className="font-heading font-bold text-xl mb-2">Вакансия не найдена</h2>
         <Link href="/jobs" className="text-accent text-sm hover:text-accent-cyan">← ко всем вакансиям</Link>
@@ -323,7 +323,7 @@ export default function JobDetailPage() {
 
   return (
     <div className="max-w-[1280px] mx-auto px-6 py-8">
-      <Link href="/jobs" className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-white transition-colors mb-6">
+      <Link href="/jobs" className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-white transition-colors mb-4 sm:mb-6">
         <ArrowLeft size={14} />
         Ко всем вакансиям
       </Link>
@@ -332,7 +332,7 @@ export default function JobDetailPage() {
         <div className="lg:col-span-2 space-y-6">
           <div className="flex items-start justify-between mb-2">
             <div className="flex-1">
-              <h1 className="font-heading font-bold text-2xl md:text-3xl">{job.title}</h1>
+              <h1 className="font-heading font-bold text-xl sm:text-2xl md:text-3xl">{job.title}</h1>
               <p className="text-muted text-sm mt-1">{job.employer?.company_name || 'Компания'}</p>
             </div>
             <div className="flex items-center gap-2 ml-4">
@@ -374,7 +374,7 @@ export default function JobDetailPage() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
             {(job.salary_min || job.salary_max) && (
               <Badge variant="salary">{formatSalary(job.salary_min, job.salary_max)}</Badge>
             )}

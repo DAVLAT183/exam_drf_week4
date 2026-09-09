@@ -69,7 +69,7 @@ export default function NotificationsPage() {
 
   if (loading) {
     return (
-      <div className="max-w-[1280px] mx-auto px-6 py-8">
+    <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <Skeleton className="h-8 w-48 mb-6" />
         {Array.from({ length: 5 }).map((_, i) => (
           <Skeleton key={i} className="h-20 rounded-card mb-3" />
@@ -80,7 +80,7 @@ export default function NotificationsPage() {
 
   return (
     <div className="max-w-[1280px] mx-auto px-6 py-8">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
         <h1 className="font-heading font-bold text-2xl md:text-3xl">
           Уведомления
         </h1>

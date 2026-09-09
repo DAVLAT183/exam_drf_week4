@@ -46,7 +46,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-border-default bg-bg-secondary mt-auto">
-      <div className="max-w-[1440px] mx-auto px-6 py-12 lg:py-16">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
           <div className="col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5 mb-4" aria-label="CareerHub - главная">

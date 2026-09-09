@@ -56,7 +56,7 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <div className="max-w-[1280px] mx-auto px-6 py-12">
+    <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <div className="mb-10">
         <h1 className="font-heading font-bold text-3xl md:text-4xl mb-3">Блог</h1>
         <p className="text-text-muted text-lg">Полезные статьи о карьере, собеседованиях и поиске работы</p>

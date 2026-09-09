@@ -129,37 +129,44 @@ export default function EmployerChat({ initialUserId }: EmployerChatProps) {
   if (activeUser) {
     return (
       <div className="flex flex-col h-full">
-        <div className="p-4 border-b border-[var(--color-border-default)] bg-[var(--color-bg-secondary)]">
-          <div className="flex items-center gap-3">
+        <div className="p-3 sm:p-4 border-b border-[var(--color-border-default)] bg-[var(--color-bg-secondary)]">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={() => { setActiveUser(null); setMessages([]); }}
-              className="p-2 rounded-full hover:bg-[var(--color-surface-hover)] transition-colors"
+              className="p-1.5 sm:p-2 rounded-full hover:bg-[var(--color-surface-hover)] transition-colors flex-shrink-0"
             >
-              <ArrowLeft size={18} className="text-[var(--color-text-muted)]" />
+              <ArrowLeft size={16} className="text-[var(--color-text-muted)] sm:hidden" />
+              <ArrowLeft size={18} className="text-[var(--color-text-muted)] hidden sm:block" />
             </button>
-            <div className="w-9 h-9 rounded-full bg-[var(--color-surface-hover)] flex items-center justify-center">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[var(--color-surface-hover)] flex items-center justify-center flex-shrink-0">
               {activeUser.avatar ? (
                 <img src={activeUser.avatar} alt="" className="w-full h-full rounded-full object-cover" />
               ) : isStudent ? (
-                <Building2 size={16} className="text-[var(--color-text-muted)]" />
+                <Building2 size={14} className="text-[var(--color-text-muted)] sm:hidden" />
               ) : (
-                <User size={16} className="text-[var(--color-text-muted)]" />
+                <User size={14} className="text-[var(--color-text-muted)] sm:hidden" />
+              )}
+              {activeUser.avatar ? null : isStudent ? (
+                <Building2 size={16} className="text-[var(--color-text-muted)] hidden sm:block" />
+              ) : (
+                <User size={16} className="text-[var(--color-text-muted)] hidden sm:block" />
               )}
             </div>
-            <div>
-              <h3 className="font-heading font-semibold text-sm">{activeUser.username}</h3>
-              <p className="text-xs text-[var(--color-text-muted)]">{otherRoleLabel}</p>
+            <div className="min-w-0">
+              <h3 className="font-heading font-semibold text-xs sm:text-sm truncate">{activeUser.username}</h3>
+              <p className="text-[10px] sm:text-xs text-[var(--color-text-muted)]">{otherRoleLabel}</p>
             </div>
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="w-14 h-14 rounded-full bg-[var(--color-surface-hover)] flex items-center justify-center mb-3">
-                <MessageSquare size={22} className="text-[var(--color-text-muted)]" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[var(--color-surface-hover)] flex items-center justify-center mb-2 sm:mb-3">
+                <MessageSquare size={18} className="text-[var(--color-text-muted)] sm:hidden" />
+                <MessageSquare size={22} className="text-[var(--color-text-muted)] hidden sm:block" />
               </div>
-              <p className="text-sm text-[var(--color-text-muted)]">Начните разговор</p>
+              <p className="text-xs sm:text-sm text-[var(--color-text-muted)]">Начните разговор</p>
             </div>
           ) : (
             messages.map((msg) => (
@@ -168,14 +175,14 @@ export default function EmployerChat({ initialUserId }: EmployerChatProps) {
                 className={`flex ${msg.sender === activeUser.id ? 'justify-start' : 'justify-end'}`}
               >
                 <div
-                  className={`max-w-[70%] px-4 py-3 rounded-[16px] text-sm leading-relaxed ${
+                  className={`max-w-[80%] sm:max-w-[70%] px-3 sm:px-4 py-2.5 sm:py-3 rounded-[14px] sm:rounded-[16px] text-[13px] sm:text-sm leading-relaxed ${
                     msg.sender === activeUser.id
                       ? 'bg-[var(--color-surface-card)] text-[var(--color-text-primary)] border border-[var(--color-border-default)] rounded-bl-[4px]'
                       : 'bg-[var(--color-accent-primary)] text-white rounded-br-[4px]'
                   }`}
                 >
                   <p>{msg.content}</p>
-                  <p className={`text-[10px] mt-1 ${msg.sender === activeUser.id ? 'text-[var(--color-text-muted)]' : 'text-white/70'}`}>
+                  <p className={`text-[9px] sm:text-[10px] mt-1 ${msg.sender === activeUser.id ? 'text-[var(--color-text-muted)]' : 'text-white/70'}`}>
                     {formatTime(msg.created_at)}
                   </p>
                 </div>
@@ -185,19 +192,20 @@ export default function EmployerChat({ initialUserId }: EmployerChatProps) {
           <div ref={messagesEndRef} />
         </div>
 
-        <div className="p-4 border-t border-[var(--color-border-default)] bg-[var(--color-bg-secondary)]">
-          <div className="flex gap-3">
+        <div className="p-3 sm:p-4 border-t border-[var(--color-border-default)] bg-[var(--color-bg-secondary)]">
+          <div className="flex gap-2 sm:gap-3">
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Напишите сообщение..."
-              className="flex-1 px-4 py-3 rounded-[12px] bg-[var(--color-surface-card)] border border-[var(--color-border-default)] text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-subtle)] focus:outline-none focus:border-[var(--color-accent-primary)] focus:ring-2 focus:ring-[var(--color-accent-primary-muted)] transition-all"
+              className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 rounded-[10px] sm:rounded-[12px] bg-[var(--color-surface-card)] border border-[var(--color-border-default)] text-[13px] sm:text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-subtle)] focus:outline-none focus:border-[var(--color-accent-primary)] focus:ring-2 focus:ring-[var(--color-accent-primary-muted)] transition-all"
               disabled={sending}
             />
-            <Button onClick={sendMessage} disabled={!input.trim() || sending}>
-              <Send size={16} />
+            <Button onClick={sendMessage} disabled={!input.trim() || sending} className="h-10 sm:h-11">
+              <Send size={14} className="sm:hidden" />
+              <Send size={16} className="hidden sm:block" />
             </Button>
           </div>
         </div>

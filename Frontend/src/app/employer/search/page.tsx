@@ -58,7 +58,7 @@ export default function EmployerSearchPage() {
   });
 
   return (
-    <div className="max-w-[1280px] mx-auto px-6 py-12">
+    <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <div className="mb-8">
         <h1 className="font-heading font-bold text-3xl md:text-4xl mb-3">Поиск кандидатов</h1>
         <p className="text-text-muted text-lg">Найдите лучших студентов для вашей команды</p>

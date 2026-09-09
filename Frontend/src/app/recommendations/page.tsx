@@ -55,7 +55,7 @@ export default function RecommendationsPage() {
 
   if (loading) {
     return (
-      <div className="max-w-[1280px] mx-auto px-6 py-8">
+    <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <Skeleton className="h-8 w-64 mb-6" />
         <Skeleton className="h-12 w-full mb-6" />
         {Array.from({ length: 4 }).map((_, i) => (
@@ -72,7 +72,7 @@ export default function RecommendationsPage() {
         К профилю
       </Link>
 
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
         <div className="w-10 h-10 rounded-btn bg-gradient-to-br from-accent to-accent-cyan flex items-center justify-center">
           <Sparkles size={20} className="text-white" />
         </div>

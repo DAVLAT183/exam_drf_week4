@@ -82,15 +82,16 @@ export default function MiniAIChat() {
   if (pathname === '/chat') return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-[500]">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[500]">
       {/* Chat Button */}
       {!isOpen && (
         <button
           onClick={toggleChat}
-          className="btn-float w-14 h-14 rounded-full bg-accent-primary text-white flex items-center justify-center transition-all duration-200 group"
+          className="btn-float w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-accent-primary text-white flex items-center justify-center transition-all duration-200 group"
           aria-label="Открыть AI чат"
         >
-          <Bot size={24} className="group-hover:rotate-12 transition-transform duration-200" />
+          <Bot size={20} className="group-hover:rotate-12 transition-transform duration-200 sm:hidden" />
+          <Bot size={24} className="group-hover:rotate-12 transition-transform duration-200 hidden sm:block" />
           <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">1</span>
         </button>
       )}
@@ -99,44 +100,48 @@ export default function MiniAIChat() {
       {isOpen && (
         <div
           ref={containerRef}
-          className="fixed bottom-6 right-6 w-96 h-[500px] max-h-[calc(100vh-4rem)] bg-bg-primary border border-border-default rounded-2xl shadow-lg flex flex-col overflow-hidden animate-scale-in"
+          className="fixed sm:relative bottom-0 right-0 sm:bottom-auto sm:right-auto w-full sm:w-96 h-[100dvh] sm:h-[500px] sm:max-h-[calc(100vh-4rem)] bg-bg-primary border border-border-default sm:rounded-2xl shadow-lg flex flex-col overflow-hidden animate-scale-in"
         >
-          <div className="p-4 border-b border-border-default bg-bg-secondary flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-accent-primary flex items-center justify-center">
-                <Bot size={18} className="text-white" />
+          <div className="p-3 sm:p-4 border-b border-border-default bg-bg-secondary flex items-center justify-between">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-accent-primary flex items-center justify-center">
+                <Bot size={16} className="text-white sm:hidden" />
+                <Bot size={18} className="text-white hidden sm:block" />
               </div>
               <div>
-                <h3 className="font-heading font-semibold text-sm">AI Карьерный консультант</h3>
-                <p className="text-xs text-text-muted">Поможет с резюме и поиском работы</p>
+                <h3 className="font-heading font-semibold text-xs sm:text-sm">AI Карьерный консультант</h3>
+                <p className="text-[10px] sm:text-xs text-text-muted hidden sm:block">Поможет с резюме и поиском работы</p>
               </div>
             </div>
             <div className="flex items-center gap-1">
               <button
                 onClick={clearChat}
-                className="p-2 rounded-lg hover:bg-surface-hover transition-colors text-text-muted hover:text-text-primary"
+                className="p-1.5 sm:p-2 rounded-lg hover:bg-surface-hover transition-colors text-text-muted hover:text-text-primary"
                 title="Новый чат"
               >
-                <Sparkles size={14} />
+                <Sparkles size={12} className="sm:hidden" />
+                <Sparkles size={14} className="hidden sm:block" />
               </button>
               <button
                 onClick={toggleChat}
-                className="p-2 rounded-lg hover:bg-surface-hover transition-colors text-text-muted hover:text-text-primary"
+                className="p-1.5 sm:p-2 rounded-lg hover:bg-surface-hover transition-colors text-text-muted hover:text-text-primary"
                 title="Закрыть"
               >
-                <X size={14} />
+                <X size={12} className="sm:hidden" />
+                <X size={14} className="hidden sm:block" />
               </button>
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
             {messages.length === 0 ? (
-              <div className="flex flex-col items-center justify-center h-full text-center">
-                <div className="w-16 h-16 rounded-full bg-accent-primary/10 flex items-center justify-center mb-4">
-                  <Bot size={28} className="text-accent-primary" />
+              <div className="flex flex-col items-center justify-center h-full text-center px-4">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-accent-primary/10 flex items-center justify-center mb-3 sm:mb-4">
+                  <Bot size={24} className="text-accent-primary sm:hidden" />
+                  <Bot size={28} className="text-accent-primary hidden sm:block" />
                 </div>
-                <h3 className="font-heading font-semibold text-lg mb-2">Привет! Я AI-ассистент</h3>
-                <p className="text-sm text-text-muted max-w-md">
+                <h3 className="font-heading font-semibold text-base sm:text-lg mb-2">Привет! Я AI-ассистент</h3>
+                <p className="text-xs sm:text-sm text-text-muted max-w-md">
                   Я помогу вам составить резюме, найти работу или подготовиться к собеседованию.
                   Задайте вопрос или расскажите о себе!
                 </p>
@@ -146,18 +151,19 @@ export default function MiniAIChat() {
                 <div
                   key={i}
                   className={clsx(
-                    'flex gap-3',
+                    'flex gap-2 sm:gap-3',
                     msg.role === 'user' ? 'justify-end' : 'justify-start'
                   )}
                 >
                   {msg.role === 'assistant' && (
-                    <div className="w-8 h-8 rounded-full bg-accent-primary/15 flex items-center justify-center flex-shrink-0">
-                      <Bot size={14} className="text-accent-primary" />
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-accent-primary/15 flex items-center justify-center flex-shrink-0">
+                      <Bot size={12} className="text-accent-primary sm:hidden" />
+                      <Bot size={14} className="text-accent-primary hidden sm:block" />
                     </div>
                   )}
                   <div
                     className={clsx(
-                      'max-w-[75%] px-4 py-3 rounded-[16px] text-sm leading-relaxed',
+                      'max-w-[80%] sm:max-w-[75%] px-3 sm:px-4 py-2.5 sm:py-3 rounded-[14px] sm:rounded-[16px] text-[13px] sm:text-sm leading-relaxed',
                       msg.role === 'user'
                         ? 'bg-accent-primary text-white rounded-br-[4px]'
                         : 'bg-surface-card text-text-primary border border-border-default rounded-bl-[4px]'
@@ -166,40 +172,44 @@ export default function MiniAIChat() {
                     {msg.content}
                   </div>
                   {msg.role === 'user' && (
-                    <div className="w-8 h-8 rounded-full bg-surface-hover flex items-center justify-center flex-shrink-0">
-                      <MessageSquare size={14} className="text-text-muted" />
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-surface-hover flex items-center justify-center flex-shrink-0">
+                      <MessageSquare size={12} className="text-text-muted sm:hidden" />
+                      <MessageSquare size={14} className="text-text-muted hidden sm:block" />
                     </div>
                   )}
                 </div>
               ))
             )}
             {sending && (
-              <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-accent-primary/15 flex items-center justify-center">
-                  <Bot size={14} className="text-accent-primary" />
+              <div className="flex gap-2 sm:gap-3">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-accent-primary/15 flex items-center justify-center">
+                  <Bot size={12} className="text-accent-primary sm:hidden" />
+                  <Bot size={14} className="text-accent-primary hidden sm:block" />
                 </div>
-                <div className="px-4 py-3 rounded-[16px] bg-surface-card border border-border-default">
-                  <Loader2 size={16} className="animate-spin text-accent-primary" />
+                <div className="px-3 sm:px-4 py-2.5 sm:py-3 rounded-[14px] sm:rounded-[16px] bg-surface-card border border-border-default">
+                  <Loader2 size={14} className="animate-spin text-accent-primary sm:hidden" />
+                  <Loader2 size={16} className="animate-spin text-accent-primary hidden sm:block" />
                 </div>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="p-4 border-t border-border-default bg-bg-secondary">
-            <div className="flex gap-3">
+          <div className="p-3 sm:p-4 border-t border-border-default bg-bg-secondary">
+            <div className="flex gap-2 sm:gap-3">
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Напишите сообщение..."
-                className="flex-1 px-4 py-3 rounded-[12px] bg-surface-card border border-border-default text-sm text-text-primary placeholder:text-text-subtle focus:outline-none focus:border-accent-primary focus:ring-2 focus:ring-accent-primary-muted transition-all"
+                className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 rounded-[10px] sm:rounded-[12px] bg-surface-card border border-border-default text-[13px] sm:text-sm text-text-primary placeholder:text-text-subtle focus:outline-none focus:border-accent-primary focus:ring-2 focus:ring-accent-primary-muted transition-all"
                 disabled={sending}
                 autoFocus
               />
-              <Button onClick={handleSend} disabled={!input.trim() || sending} className="h-11">
-                <Send size={16} />
+              <Button onClick={handleSend} disabled={!input.trim() || sending} className="h-10 sm:h-11">
+                <Send size={14} className="sm:hidden" />
+                <Send size={16} className="hidden sm:block" />
               </Button>
             </div>
           </div>

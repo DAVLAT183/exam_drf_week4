@@ -61,7 +61,7 @@ export default function CreateJobPage() {
   };
 
   return (
-    <div className="max-w-[1280px] mx-auto px-6 py-8">
+    <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
       <Link href="/jobs" className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-white transition-colors mb-6">
         <ArrowLeft size={14} />
         Ко всем вакансиям
@@ -69,7 +69,7 @@ export default function CreateJobPage() {
 
       <h1 className="font-heading font-bold text-2xl md:text-3xl mb-6">Создать вакансию</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         <div className="lg:col-span-2">
           <Card>
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">

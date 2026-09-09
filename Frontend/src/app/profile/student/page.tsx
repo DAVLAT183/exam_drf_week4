@@ -199,7 +199,7 @@ export default function StudentProfilePage() {
 
   if (loading) {
     return (
-      <div className="max-w-[1280px] mx-auto px-6 py-8">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <Skeleton className="h-8 w-48 mb-6" />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <Skeleton className="h-64 rounded-card" />
@@ -213,8 +213,8 @@ export default function StudentProfilePage() {
   }
 
   return (
-    <div className="max-w-[1200px] mx-auto px-6 py-8">
-      <h1 className="font-heading font-bold text-[28px] text-text-primary tracking-tight mb-8">Мой профиль</h1>
+    <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <h1 className="font-heading font-bold text-xl sm:text-[28px] text-text-primary tracking-tight mb-6 sm:mb-8">Мой профиль</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Sidebar */}
@@ -272,9 +272,9 @@ export default function StudentProfilePage() {
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Personal Data */}
-          <div className="card-minimal p-6">
-            <div className="flex items-center justify-between mb-5">
-              <h3 className="font-heading font-semibold text-[16px] text-text-primary">Личные данные</h3>
+          <div className="card-minimal p-4 sm:p-6">
+            <div className="flex items-center justify-between mb-4 sm:mb-5">
+              <h3 className="font-heading font-semibold text-[14px] sm:text-[16px] text-text-primary">Личные данные</h3>
               <button
                 onClick={() => setEditing(!editing)}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-medium text-text-muted hover:text-text-primary hover:bg-surface-hover transition-colors"
@@ -323,7 +323,7 @@ export default function StudentProfilePage() {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div className="p-4 rounded-xl bg-surface-hover border border-border-default">
                   <span className="text-[11px] font-semibold uppercase tracking-wider text-text-subtle">Место проживания</span>
                   <p className={`text-[14px] mt-1 font-medium ${user?.location ? 'text-text-primary' : 'text-text-subtle'}`}>
@@ -359,23 +359,25 @@ export default function StudentProfilePage() {
           </div>
 
           {/* Resumes */}
-          <div className="card-minimal p-6">
-            <div className="flex items-center justify-between mb-5">
-              <h3 className="font-heading font-semibold text-[16px] text-text-primary">Резюме ({resumes.length})</h3>
-              <div className="flex gap-2">
+          <div className="card-minimal p-4 sm:p-6">
+            <div className="flex items-center justify-between mb-4 sm:mb-5">
+              <h3 className="font-heading font-semibold text-[14px] sm:text-[16px] text-text-primary">Резюме ({resumes.length})</h3>
+              <div className="flex gap-1.5 sm:gap-2">
                 <button
                   onClick={generateAIResume}
                   disabled={aiLoading}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[13px] font-medium border border-border-default bg-surface-card text-text-secondary hover:bg-surface-hover transition-colors disabled:opacity-50"
+                  className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[11px] sm:text-[13px] font-medium border border-border-default bg-surface-card text-text-secondary hover:bg-surface-hover transition-colors disabled:opacity-50"
                 >
-                  <Sparkles size={13} />
+                  <Sparkles size={11} className="sm:hidden" />
+                  <Sparkles size={13} className="hidden sm:block" />
                   {aiLoading ? 'Генерация...' : 'ИИ'}
                 </button>
                 <button
                   onClick={() => { setEditingResume(null); setResumeModalOpen(true); }}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[13px] font-medium bg-accent-primary text-white hover:bg-accent-primary-hover transition-colors"
+                  className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[11px] sm:text-[13px] font-medium bg-accent-primary text-white hover:bg-accent-primary-hover transition-colors"
                 >
-                  <Plus size={13} />
+                  <Plus size={11} className="sm:hidden" />
+                  <Plus size={13} className="hidden sm:block" />
                   Создать
                 </button>
               </div>

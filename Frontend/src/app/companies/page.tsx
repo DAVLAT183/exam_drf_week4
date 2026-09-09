@@ -48,7 +48,7 @@ export default function CompaniesPage() {
 
   return (
     <div className="min-h-screen bg-bg-primary">
-      <div className="max-w-[1440px] mx-auto px-6 py-8">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <div className="mb-8 animate-fade-in">
           <h1 className="font-heading text-display-md text-text-primary tracking-tight font-semibold">
             Компании

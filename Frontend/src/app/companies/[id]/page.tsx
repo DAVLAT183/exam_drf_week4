@@ -46,7 +46,7 @@ export default function CompanyDetailPage() {
 
   if (loading) {
     return (
-      <div className="max-w-[1280px] mx-auto px-6 py-8">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <Skeleton className="h-8 w-48 mb-6" />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <Skeleton className="h-64 rounded-card" />
@@ -61,8 +61,8 @@ export default function CompanyDetailPage() {
 
   if (!company) {
     return (
-      <div className="max-w-[1280px] mx-auto px-6 py-8">
-        <Card className="p-12 text-center">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <Card className="p-8 sm:p-12 text-center">
           <Building2 size={48} className="text-text-muted mx-auto mb-4" />
           <h3 className="font-heading text-heading-lg text-text-primary mb-2">Компания не найдена</h3>
           <p className="font-body text-body-md text-text-muted">Возможно, компания была удалена.</p>
@@ -73,8 +73,8 @@ export default function CompanyDetailPage() {
 
   return (
     <div className="min-h-screen bg-bg-primary">
-      <div className="max-w-[1280px] mx-auto px-6 py-8">
-        <Card className="mb-8 animate-fade-in overflow-hidden">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <Card className="mb-6 sm:mb-8 animate-fade-in overflow-hidden">
           <div className="p-6 lg:p-8">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
               <div className="flex items-start gap-4">
@@ -124,7 +124,7 @@ export default function CompanyDetailPage() {
           </div>
         </Card>
 
-        <div className="border-b border-border-default mb-6">
+        <div className="border-b border-border-default mb-4 sm:mb-6">
           <nav className="flex gap-8">
             <button
               onClick={() => setActiveTab('about')}

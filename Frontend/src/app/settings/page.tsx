@@ -113,9 +113,9 @@ export default function SettingsPage() {
 
   if (loading) {
     return (
-      <div className="max-w-[1280px] mx-auto px-6 py-8">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <Skeleton className="h-8 w-48 mb-6" />
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8">
           <Skeleton className="h-64 rounded-card" />
           <div className="lg:col-span-3 space-y-6">
             <Skeleton className="h-40 rounded-card" />
@@ -135,8 +135,8 @@ export default function SettingsPage() {
   ];
 
   return (
-    <div className="max-w-[1280px] mx-auto px-6 py-8">
-      <h1 className="font-heading font-bold text-2xl md:text-3xl mb-6">Настройки</h1>
+    <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <h1 className="font-heading font-bold text-xl sm:text-2xl md:text-3xl mb-4 sm:mb-6">Настройки</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <div>
@@ -148,7 +148,7 @@ export default function SettingsPage() {
               <h2 className="font-heading font-semibold text-lg">{user?.username}</h2>
               <p className="text-xs text-muted mt-1 capitalize">{user?.role === 'employer' ? 'Работодатель' : 'Студент'}</p>
             </div>
-            <nav className="p-2 space-y-1">
+            <nav className="p-2 space-y-1 overflow-x-auto">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -318,88 +318,151 @@ export default function SettingsPage() {
                 <h3 className="font-heading font-semibold">Уведомления</h3>
                 <p className="text-xs text-muted mt-1">Настройте, какие уведомления получать</p>
               </div>
-              <div className="p-6 space-y-4">
-                <div className="space-y-4">
-                  <h4 className="font-medium text-sm text-text-secondary mb-3">Email уведомления</h4>
-                  <label className="flex items-center justify-between cursor-pointer">
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        checked={notifications.email_jobs}
-                        onChange={(e) => setNotifications((n) => ({ ...n, email_jobs: e.target.checked }))}
-                        className="w-4 h-4 rounded border-border-default text-accent-primary focus:ring-accent-primary"
-                      />
-                      <div>
-                        <p className="font-medium text-sm">Новые вакансии</p>
-                        <p className="text-xs text-muted">Рекомендации под ваш профиль</p>
-                      </div>
+              <div className="p-6 space-y-6">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 rounded-lg bg-accent-primary/10 flex items-center justify-center">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent-primary"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                     </div>
-                  </label>
-                  <label className="flex items-center justify-between cursor-pointer">
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        checked={notifications.email_applications}
-                        onChange={(e) => setNotifications((n) => ({ ...n, email_applications: e.target.checked }))}
-                        className="w-4 h-4 rounded border-border-default text-accent-primary focus:ring-accent-primary"
-                      />
-                      <div>
-                        <p className="font-medium text-sm">Отклики на вакансии</p>
-                        <p className="text-xs text-muted">Статус рассмотрения, приглашения на собеседование</p>
-                      </div>
+                    <div>
+                      <h4 className="font-medium text-sm text-text-primary">Email уведомления</h4>
+                      <p className="text-xs text-muted">Получать на почту</p>
                     </div>
-                  </label>
-                  <label className="flex items-center justify-between cursor-pointer">
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        checked={notifications.email_messages}
-                        onChange={(e) => setNotifications((n) => ({ ...n, email_messages: e.target.checked }))}
-                        className="w-4 h-4 rounded border-border-default text-accent-primary focus:ring-accent-primary"
-                      />
-                      <div>
-                        <p className="font-medium text-sm">Сообщения от работодателей</p>
-                        <p className="text-xs text-muted">Новые сообщения в чате</p>
+                  </div>
+
+                  <div className="rounded-xl border border-border-default divide-y divide-border-default overflow-hidden">
+                    <label className="flex items-center justify-between p-4 hover:bg-surface-hover/50 transition-colors cursor-pointer group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/15 transition-colors">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500"><path d="M16 22h2c.5 0 1-.2 1.4-.5.3-.3.5-.7.5-1.2V9.5L13.5 4H12v18h2"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
+                        </div>
+                        <div>
+                          <p className="font-medium text-sm text-text-primary">Новые вакансии</p>
+                          <p className="text-xs text-muted">Рекомендации под ваш профиль</p>
+                        </div>
                       </div>
-                    </div>
-                  </label>
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          checked={notifications.email_jobs}
+                          onChange={(e) => setNotifications((n) => ({ ...n, email_jobs: e.target.checked }))}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 rounded-full bg-border-default peer-checked:bg-accent-primary transition-colors duration-200" />
+                        <div className="absolute left-0.5 top-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200 peer-checked:translate-x-5" />
+                      </div>
+                    </label>
+
+                    <label className="flex items-center justify-between p-4 hover:bg-surface-hover/50 transition-colors cursor-pointer group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-500/15 transition-colors">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-500"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        </div>
+                        <div>
+                          <p className="font-medium text-sm text-text-primary">Отклики на вакансии</p>
+                          <p className="text-xs text-muted">Статус рассмотрения, приглашения на собеседование</p>
+                        </div>
+                      </div>
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          checked={notifications.email_applications}
+                          onChange={(e) => setNotifications((n) => ({ ...n, email_applications: e.target.checked }))}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 rounded-full bg-border-default peer-checked:bg-accent-primary transition-colors duration-200" />
+                        <div className="absolute left-0.5 top-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200 peer-checked:translate-x-5" />
+                      </div>
+                    </label>
+
+                    <label className="flex items-center justify-between p-4 hover:bg-surface-hover/50 transition-colors cursor-pointer group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-cyan-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-500/15 transition-colors">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-500"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>
+                        </div>
+                        <div>
+                          <p className="font-medium text-sm text-text-primary">Сообщения от работодателей</p>
+                          <p className="text-xs text-muted">Новые сообщения в чате</p>
+                        </div>
+                      </div>
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          checked={notifications.email_messages}
+                          onChange={(e) => setNotifications((n) => ({ ...n, email_messages: e.target.checked }))}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 rounded-full bg-border-default peer-checked:bg-accent-primary transition-colors duration-200" />
+                        <div className="absolute left-0.5 top-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200 peer-checked:translate-x-5" />
+                      </div>
+                    </label>
+                  </div>
                 </div>
 
-                <div className="pt-4 border-t border-border-default space-y-4">
-                  <h4 className="font-medium text-sm text-text-secondary mb-3">Push уведомления (в браузере)</h4>
-                  <label className="flex items-center justify-between cursor-pointer">
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        checked={notifications.push_jobs}
-                        onChange={(e) => setNotifications((n) => ({ ...n, push_jobs: e.target.checked }))}
-                        className="w-4 h-4 rounded border-border-default text-accent-primary focus:ring-accent-primary"
-                      />
-                      <div>
-                        <p className="font-medium text-sm">Новые вакансии</p>
-                        <p className="text-xs text-muted">Мгновенные уведомления о подходящих вакансиях</p>
-                      </div>
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-violet-500"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
                     </div>
-                  </label>
-                  <label className="flex items-center justify-between cursor-pointer">
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        checked={notifications.push_messages}
-                        onChange={(e) => setNotifications((n) => ({ ...n, push_messages: e.target.checked }))}
-                        className="w-4 h-4 rounded border-border-default text-accent-primary focus:ring-accent-primary"
-                      />
-                      <div>
-                        <p className="font-medium text-sm">Сообщения</p>
-                        <p className="text-xs text-muted">Уведомления о новых сообщениях в реальном времени</p>
-                      </div>
+                    <div>
+                      <h4 className="font-medium text-sm text-text-primary">Push уведомления</h4>
+                      <p className="text-xs text-muted">Мгновенные оповещения в браузере</p>
                     </div>
-                  </label>
+                  </div>
+
+                  <div className="rounded-xl border border-border-default divide-y divide-border-default overflow-hidden">
+                    <label className="flex items-center justify-between p-4 hover:bg-surface-hover/50 transition-colors cursor-pointer group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-500/15 transition-colors">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-500"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        </div>
+                        <div>
+                          <p className="font-medium text-sm text-text-primary">Новые вакансии</p>
+                          <p className="text-xs text-muted">Мгновенные уведомления о подходящих вакансиях</p>
+                        </div>
+                      </div>
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          checked={notifications.push_jobs}
+                          onChange={(e) => setNotifications((n) => ({ ...n, push_jobs: e.target.checked }))}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 rounded-full bg-border-default peer-checked:bg-accent-primary transition-colors duration-200" />
+                        <div className="absolute left-0.5 top-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200 peer-checked:translate-x-5" />
+                      </div>
+                    </label>
+
+                    <label className="flex items-center justify-between p-4 hover:bg-surface-hover/50 transition-colors cursor-pointer group">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-rose-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-rose-500/15 transition-colors">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-rose-500"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <div>
+                          <p className="font-medium text-sm text-text-primary">Сообщения</p>
+                          <p className="text-xs text-muted">Уведомления о новых сообщениях в реальном времени</p>
+                        </div>
+                      </div>
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          checked={notifications.push_messages}
+                          onChange={(e) => setNotifications((n) => ({ ...n, push_messages: e.target.checked }))}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 rounded-full bg-border-default peer-checked:bg-accent-primary transition-colors duration-200" />
+                        <div className="absolute left-0.5 top-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200 peer-checked:translate-x-5" />
+                      </div>
+                    </label>
+                  </div>
                 </div>
 
-                <Button onClick={saveNotifications} variant="secondary">
-                  Сохранить настройки
-                </Button>
+                <div className="flex items-center gap-3 pt-2">
+                  <Button onClick={saveNotifications} variant="primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                    Сохранить настройки
+                  </Button>
+                </div>
               </div>
             </Card>
           )}

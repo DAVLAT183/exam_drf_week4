@@ -43,7 +43,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-[200] h-16 border-b border-border-default bg-bg-primary/80 backdrop-blur-md">
-      <div className="max-w-[1440px] mx-auto h-full px-6 flex items-center justify-between">
+      <div className="max-w-[1440px] mx-auto h-full px-4 sm:px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group" aria-label="CareerHub">
           <div className="w-9 h-9 rounded-lg bg-accent-primary flex items-center justify-center">
             <Briefcase className="text-text-on-accent" size={18} />
@@ -152,7 +152,7 @@ export default function Navbar() {
 
       {mobileOpen && (
         <div className="lg:hidden border-t border-border-default bg-bg-primary animate-slide-down animate-fade-in">
-          <div className="px-6 py-4 space-y-1">
+          <div className="px-4 sm:px-6 py-4 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}

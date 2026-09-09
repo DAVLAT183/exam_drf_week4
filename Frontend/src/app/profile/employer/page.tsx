@@ -160,9 +160,9 @@ export default function EmployerProfilePage() {
 
   if (loading) {
     return (
-      <div className="max-w-[1280px] mx-auto px-6 py-8">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
         <Skeleton className="h-8 w-48 mb-6" />
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           <Skeleton className="h-64 rounded-card" />
           <div className="lg:col-span-2">
             <Skeleton className="h-40 rounded-card mb-4" />
@@ -174,10 +174,10 @@ export default function EmployerProfilePage() {
   }
 
   return (
-    <div className="max-w-[1280px] mx-auto px-6 py-8">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="font-heading font-bold text-2xl md:text-3xl">Профиль работодателя</h1>
-        <div className="flex gap-2">
+    <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <h1 className="font-heading font-bold text-xl sm:text-2xl md:text-3xl">Профиль работодателя</h1>
+        <div className="flex gap-2 flex-wrap">
           <Button size="sm" onClick={() => setCreateOpen(true)} className="flex items-center gap-2">
             <Plus size={14} />
             Добавить вакансию

@@ -281,15 +281,20 @@ def _chat_with_gemini(messages, system_prompt):
         return None
 
     try:
+        import google.generativeai as genai
+
+        model = genai.GenerativeModel(
+            'gemini-2.5-flash',
+            system_instruction=system_prompt
+        )
+
         chat_history = []
         for msg in messages[:-1]:
             role = 'user' if msg['role'] == 'user' else 'model'
             chat_history.append({'role': role, 'parts': [msg['content']]})
 
-        chat = client.start_chat(history=chat_history)
-
-        full_prompt = system_prompt + "\n\nСообщение пользователя: " + messages[-1]['content']
-        response = chat.send_message(full_prompt)
+        chat = model.start_chat(history=chat_history)
+        response = chat.send_message(messages[-1]['content'])
         return response.text
     except Exception:
         return None

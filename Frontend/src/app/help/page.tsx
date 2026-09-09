@@ -24,7 +24,7 @@ export default function HelpPage() {
   });
 
   return (
-    <div className="max-w-[800px] mx-auto px-6 py-12">
+    <div className="max-w-[800px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <div className="text-center mb-10">
         <div className="w-14 h-14 rounded-2xl bg-accent-primary/10 flex items-center justify-center mx-auto mb-4">
           <HelpCircle size={26} className="text-accent-primary" />
